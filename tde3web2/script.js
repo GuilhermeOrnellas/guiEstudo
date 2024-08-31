@@ -181,7 +181,7 @@ switch(letra){
 //     }
 //     else {
 //       i--
-//       alert (`erro`);
+//       alert (`erro`)
 //    }
   
 // }
