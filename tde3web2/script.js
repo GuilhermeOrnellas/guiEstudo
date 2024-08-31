@@ -165,7 +165,7 @@ switch(letra){
 //     document.write(`A nota digitada foi ${nota}`)
 //   }
 //   else {
-//     alert (`Nota inválida`);
+//     alert (`Nota inválida`)
 //  }
 // }
 
