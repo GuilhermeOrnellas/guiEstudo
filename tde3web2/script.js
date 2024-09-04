@@ -189,10 +189,48 @@ switch(letra){
 // 9
 
 
+// 10
 
 
+// 11
+ 
+//  var num = +(prompt("Digite um numero"))
+//  var por = +(prompt("Digite um numero de porcentagem"))
+
+//   res = num * (por/100)
+  
+//   document.write(`${por}% de ${num} é ${res}`)
+
+// 12
+
+// var c = +(prompt("Quantos graus celsius está:"))
+
+// f= (c*9/5) + 32
+
+// document.write(`A temperatura em Fahrenheit é ${f}`)
+
+// 13
 
 
+// 14
 
+// var numQ = +(prompt("Digite um numero para a raiz quadrada"))
+
+// res = Math.sqrt(numQ)
+
+// document.write(`${Math.round(res)}`)
+
+// 15
+
+
+  var num = +(prompt("Digite um número"))
+  var num1 = +(prompt("Digite outro número"))
+
+  if (num >= num1) {
+
+    
+  } else {
+    document.write(`1 = ${num} e 2 = ${num1}<br>`)
+  }
 
 
