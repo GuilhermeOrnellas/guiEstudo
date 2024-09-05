@@ -187,10 +187,49 @@ switch(letra){
 // }
 
 // 9
+//  var numeros = [15, 8, 22, 3, 11]
+//   var menor = numeros[0]
+//   var maior = numeros[0]
+//   var soma = 0
+
+
+// for (var i = 0; i < numeros.length; i++) {
+//     soma += numeros[i]
+    
+//     if (numeros[i] < menor) {
+//         menor = numeros[i]
+//     }
+
+//     if (numeros[i] > maior) {
+//         maior = numeros[i]
+//     }
+// }
+
+// document.write("<br>Menor valor:", menor);
+// document.write("<br>Maior valor:", maior);
+// document.write("<br>Soma dos valores:", soma);
 
 
 // 10
 
+// var quantidadeTurmas = parseInt(prompt("Informe a quantidade de turmas:"))
+// var somaAlunos = 0
+
+
+// for (var i = 1; i <= quantidadeTurmas; i++) {
+//     var alunosNaTurma
+
+//     do {
+//         alunosNaTurma = parseInt(prompt("Informe a quantidade de alunos na turma " + i + " (máximo 40):"))
+//         if (alunosNaTurma > 40) {
+//             alert("O número máximo de alunos por turma é 40. Tente novamente.")
+//         }
+//     } while (alunosNaTurma > 40)
+
+//     somaAlunos += alunosNaTurma
+// }
+// var mediaAlunosPorTurma = somaAlunos / quantidadeTurmas
+// document.write(`A média de alunos por turma é: ${mediaAlunosPorTurma}`)
 
 // 11
  
@@ -211,6 +250,21 @@ switch(letra){
 
 // 13
 
+// function fibonacci(n) {
+//   if (n<= 1) {
+//       return n
+//   } else {
+//       return fibonacci (n - 1) + fibonacci (n-2)
+//   }
+// }
+//   function sequenciaFibonacci(n) {
+//   let list = []
+//   for (let i = 0; i <n; i++) {
+//     list. push(fibonacci(i))
+//   }
+//   return list
+//   }
+//   document. write(sequenciaFibonacci(20))
 
 // 14
 
@@ -227,10 +281,10 @@ switch(letra){
   var num1 = +(prompt("Digite outro número"))
 
   if (num >= num1) {
-
+    document.write(`O numero 1 é maior ou igual ao numero 2`)
     
   } else {
-    document.write(`1 = ${num} e 2 = ${num1}<br>`)
+    document.write(`O numero 1 é menor do que o numero 2`)
   }
 
 
