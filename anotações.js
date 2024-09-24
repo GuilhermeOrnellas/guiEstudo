@@ -33,8 +33,8 @@ a variável + .slice(colocar o indice) cria uma Array só com os numeros dos ind
 
 a variável + .splice(posição da Array , numero de arrays apagadas , novos elementos)
 
-a Variavel + Map() nesse caso o map vai analizar todos os numeros 
-da Array sem altera-la, mas se usar o -- a Variavel + map(function(variável){ return ... }) tudo que pedir no function vai mudar
+a Variavel + .Map() nesse caso o map vai analizar todos os numeros 
+da Array sem altera-la, mas se usar o -- a Variavel + .map(function(variável){ return ... }) tudo que pedir no function vai mudar
 
 a variavel + .filter() -> funciona igual ao map() encima , mas o filter() filtra
 
