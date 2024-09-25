@@ -24,6 +24,4 @@
 
 // .replace('oque','por oque') serve para mudar o oque(ex: '.') pelo o por oque(ex: ',')
 
-
-
-
+// 5**2 -> 25  (potência)
