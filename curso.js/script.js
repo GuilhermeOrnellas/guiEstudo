@@ -25,3 +25,17 @@
 // .replace('oque','por oque') serve para mudar o oque(ex: '.') pelo o por oque(ex: ',')
 
 // 5**2 -> 25  (potência)
+
+// ------------------------------------------------------------------------------------------------
+
+// DOM Modulo C
+
+//  utiliza html, css e java script
+/*seleciona por:
+marca  -> getElementsByTagName('p' ou 'div' ou 'h1' ...)[o numero de qual 'p' ou 'div' ou 'h1' ... 
+se tiver mais de um]
+ID  # ->  getElemtById()
+Name -> getElemntsByName()
+Class . -> getElemntsByClassName()
+Selctor -> querySelector() || querySelectorAll() - document.querySelector('div#msg')
+*/ 
