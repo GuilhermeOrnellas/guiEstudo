@@ -37,17 +37,19 @@
 //     }
 //   }
 // 5
-// c = Math.floor(Math.random()* 11)
-// var acerto = false
-// var senhaacertada = 0
-// do{
-//   // j= + (prompt(`qual sua senha`))
-//   if(j == c){
-//     acerto = true
-//   }
-// }while (acerto == false)
-// document.write(`palpites ${senhaacertada}`)
-// document.write(`senha foi ${c}`)
+var c = Math.floor(Math.random()* 11)
+var acerto = false
+var senhaacertada = 0
+var j
+do{
+   j= parseInt(prompt(`qual sua senha`))
+    senhaacertada++
+  if(j === c){
+    acerto = true
+  }
+}while (acerto === false)
+document.write(`palpites ${senhaacertada}`)
+document.write(`senha foi ${c}`)
 //exercicio 6
 // var nome = +(prompt('digite um nome )
 // function saudacao(nome){
@@ -91,29 +93,29 @@
 
 // 9
 
-function calculadora(num1, num2, operacao) {
-    switch (operacao) {
-        case 'soma':
-            return num1 + num2;
-        case 'subtracao':
-            return num1 - num2;
-        case 'multiplicacao':
-            return num1 * num2;
-        case 'divisao':
-            if (num2 !== 0) {
-                return num1 / num2;
-            } else {
-                return "Erro: Divisão por zero";
-            }
-        default:
-            return "Operação inválida";
-    }
-}
+// function calculadora(num1, num2, operacao) {
+//     switch (operacao) {
+//         case 'soma':
+//             return num1 + num2;
+//         case 'subtracao':
+//             return num1 - num2;
+//         case 'multiplicacao':
+//             return num1 * num2;
+//         case 'divisao':
+//             if (num2 !== 0) {
+//                 return num1 / num2;
+//             } else {
+//                 return "Erro: Divisão por zero";
+//             }
+//         default:
+//             return "Operação inválida";
+//     }
+// }
 
-var num1 = +(prompt("Digite o primeiro número:"));
-var operacao = prompt("Digite a operação (soma, subtracao, multiplicacao, divisao):");
-var num2 = +(prompt("Digite o segundo número:"));
+// var num1 = +(prompt("Digite o primeiro número:"));
+// var operacao = prompt("Digite a operação (soma, subtracao, multiplicacao, divisao):");
+// var num2 = +(prompt("Digite o segundo número:"));
 
-var resultadoCalculadora = calculadora(num1, num2, operacao);
+// var resultadoCalculadora = calculadora(num1, num2, operacao);
 
-document.write("Resultado da operação: " + resultadoCalculadora + "<br>");
+// document.write("Resultado da operação: " + resultadoCalculadora + "<br>");
