@@ -1,0 +1,117 @@
+html {
+    height: 100%;
+    width: 100%;
+  }
+  :root {
+    --color-white: #ffff;
+    --color-whitebege: #FAFAFA;
+    --color-azulEscuro: #0F1428;
+    --color-black: #000000ff;
+    --color-green: #1EC373;
+    --color-cinza: #1E1E1E;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: Arial;
+    background-color: var(--color-black);
+    background-size: 160%;
+    background-position: center;
+    color: var(--color-white);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 1px 4px var(--color-azulEscuro);
+    background-color: var(--color-azulEscuro);
+    height: 66px;
+    padding: 0 10%;
+    position: fixed;
+    top: 0;
+    width: 85%;
+    z-index: 10;
+  }
+  .header img {
+    margin-left: 0%;
+    order: 1;
+  }
+  .navigation {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    position: fixed;
+    text-decoration: none;
+    flex-direction: column;
+    top: 0;
+    background-color: var(--color-azulEscuro);
+    height: 100%;
+    width: 13%;
+    padding: 16px;
+    animation-duration: 0.7s;
+    margin-left: -10%;
+    z-index: 2;
+  }
+  .navigation a {
+    text-decoration: none;
+    color: var(--color-golden);
+    transition: 800ms;
+    font-weight: bold;
+  }
+  .login {
+    background-color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-green);
+    transition: 800ms;
+    width: 72px;
+    height: 26px;
+    border-radius: 15%;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .login:hover {
+    color: #b0b0b0;
+  }
+  .registrar {
+    background-color: var(--color-cinza);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-green);
+    transition: 800ms;
+    width: 72px;
+    height: 26px;
+    border-radius: 15%;
+    cursor: pointer;
+  }
+  .registrar:hover {
+    color: #b0b0b0;
+  }
+  .navigation a:hover {
+    color: #b0b0b0;
+  }
+  .content {
+    height: 100%;
+    transition: 1s;
+  }
+  .btn_icon_header {
+    background-color: transparent;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+  }
+  @media screen and (max-width: 768px) {}
+  @keyframes showSidebar {
+    from { margin-left: -100%; }
+    to { margin-left: -10%; }
+  }
+  .login-registrar { 
+    display: flex;
+    gap: 10px;
+  }

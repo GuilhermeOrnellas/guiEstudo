@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Tropa Bet</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        .sobre-nos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("fundo login.png");;
+            color: black;
+            padding: 20px;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 1px; 
+          
+        }
+
+        .sobre-nos-conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center; 
+        }
+
+        .sobre-nos-conteudo img {
+            width: 300px; 
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .sobre-nos-conteudo h2 {
+            margin-bottom: 10px;
+        }
+
+        .sobre-nos-conteudo p {
+            line-height: 1.5;
+        }
+
+      .texto-quadrado {
+        background-color: #ddd; 
+        padding: 20px; 
+        border-radius: 10px; 
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); 
+        margin-bottom: 20px; 
+      }
+      .nos img{
+        width:500px;
+        height:540px;
+      }
+        @media screen and (max-width: 768px) {
+            .sobre-nos-conteudo img {
+                width: 90vw; 
+            }
+        }
+    </style>
+</head>
+<body>
+  <div class="header" id="header">
+    <button onclick="sidebarbotao()" class="btn_icon_header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+      </svg>
+    </button>
+    <div class="logo_header">
+      <img src="TROPABET.io (1).svg" alt="Foto da Logo">
+    </div>
+    <div class="navigation" id="navigation">
+      <button onclick="sidebarbotao()" class="btn_icon_header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+        </svg>
+      </button>
+      <a href="index.html">Home</a>
+      <a href="sobrenos.html">Sobre Nós</a>
+    </div>
+    <div class="login-registrar">
+      <a href="login.html" class="login">Login</a>
+      <a href="registrar.html" class="registrar">Registrar</a>
+    </div>
+  </div>
+  <div tabindex="0" onclick="closeSidebar()" class="content" id="content"></div>
+  <div class="sobre-nos-container">
+    <div class="sobre-nos-conteudo">
+        <div class="texto-quadrado">
+            <h2>Sobre a TROPA BET</h2>
+            <p>A <strong>TROPA BET</strong> foi idealizada em 2020 por um grupo de amigos, porém só veio a se concretivar em 2024 devido a um projeto da faculdade 
+ onde o grupo era composto pelos <br> mebros de nome Guilherme e Lucas, que continuam na ativa até hoje.</p>
+            <p>No entanto, antes deles laçarem no mercado a plataforma de aposta, os amigos ficaram com um pé atraz se realmente aquilo era correto de se fazer, pois mexe com o <br> emocional e com o dinheiro das pessoas. Mas depois de muito refletir, nós decidimos colocar o site no ar, pois se existe mega da virada e muitas outras formas de se perder <br> dinheiro apostando, e como cada um se responsabiliza com o dinheiro que tem, o grupo pensou "nós estmos no capitalismo", foi então que a <strong>TROPA BET</strong> chegou ao mercado <br> e se manteve até então, fazendo muita gente feliz e se divertindo jogando.</p>
+          <img src="nos.jpeg" class='nos'>
+        </div>
+    </div>
+  </div>
+  <script>
+    var header = document.getElementById('header');
+    var navigation = document.getElementById('navigation');
+    var content = document.getElementById('content');
+    var showSidebar = false;
+    function sidebarbotao() {
+      showSidebar = !showSidebar;
+      if (showSidebar) {
+        navigation.style.marginLeft = '-10%';
+        navigation.style.animationName = 'showSidebar';
+        content.style.backdropFilter = 'showDropdown';
+      } else {
+        navigation.style.marginLeft = '-100%';
+        navigation.style.animationName = '';
+      }
+    }
+    function closeSidebar() {
+      if (showSidebar) {
+        sidebarbotao();
+      }
+    }
+  </script>
+  <script src="script.js"></script>
+    
+     </body>
+     </html>

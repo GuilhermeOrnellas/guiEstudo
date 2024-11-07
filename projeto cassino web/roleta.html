@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta de Cassino</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            align-items: center;          
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+
+            margin-top:70px;
+            margin-right:70px ;
+        }
+        #roulette-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+        }
+        #roulette-wheel {
+            width: 100%;
+            height: 100%;
+            border: 8px solid #e2e2e2;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            position: relative;
+            transform: rotate(0deg);
+            transition: transform 3s ease-out;
+        }
+        .roulette-number {
+            position: absolute;
+            transform-origin: center -150px;
+            font-size: 16px;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        .red { background-color: red; }
+        .black { background-color: black; }
+        .green { background-color: green; }
+        #pointer {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid #61dafb;
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #spin-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        #spin-button:hover {
+            background-color: #21a1f1;
+        }
+        #balance, #message {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        #bet-options {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .radio-group {
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header" id="header">
+        <button onclick="sidebarbotao()" class="btn_icon_header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </button>
+        <div class="logo_header">
+          <img src="TROPABET.io (1).svg" alt="Foto da Logo">
+        </div>
+        <div class="navigation" id="navigation">
+          <button onclick="sidebarbotao()" class="btn_icon_header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </button>
+          <a href="index.html">Home</a>
+          <a href="sobrenos.html">Sobre Nós</a>
+        </div>
+        <div class="login-registrar">
+          <a href="login.html" class="login">Login</a>
+          <a href="registrar.html" class="registrar">Registrar</a>
+        </div>
+      </div>
+      <div tabindex="0" onclick="closeSidebar()" class="content" id="content"></div>
+
+    <div class="container">
+    <h1>Roleta de Cassino</h1>
+    <div id="balance">Saldo: R$ 100</div>
+
+    <div id="roulette-container">
+        <div id="pointer"></div>
+        <div id="roulette-wheel">
+
+        </div>
+    </div>
+
+    <div id="bet-options">
+        <div class="radio-group">
+            <label>Aposte em uma cor:</label>
+            <input type="radio" name="bet-color" value="red"> Vermelho
+            <input type="radio" name="bet-color" value="black"> Preto
+            <input type="radio" name="bet-color" value="green"> Verde
+        </div>
+        <div class="radio-group">
+            <label for="bet-number">Ou escolha um número (0-36):</label>
+            <input type="number" id="bet-number" min="0" max="36">
+        </div>
+        <button id="spin-button">Girar</button>
+    </div>
+
+
+    <div id="message"></div>
+    </div>
+    <script>
+        const balanceElement = document.getElementById('balance');
+        const messageElement = document.getElementById('message');
+        const rouletteWheel = document.getElementById('roulette-wheel');
+        const pointer = document.getElementById('pointer');
+        let balance = 100;
+
+        const redNumbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+        const greenNumbers = [0];
+
+        function createRouletteNumbers() {
+            for (let i = 0; i <= 36; i++) {
+                const numberDiv = document.createElement('div');
+                numberDiv.classList.add('roulette-number');
+                numberDiv.innerText = i;
+
+                if (greenNumbers.includes(i)) {
+                    numberDiv.classList.add('green');
+                } else if (redNumbers.includes(i)) {
+                    numberDiv.classList.add('red');
+                } else {
+                    numberDiv.classList.add('black');
+                }
+
+
+                const angle = (i / 37) * 360;
+                numberDiv.style.transform = `rotate(${angle}deg) translate(0, -150px) rotate(-${angle}deg)`;
+
+                rouletteWheel.appendChild(numberDiv);
+            }
+        }
+
+        function getColor(number) {
+            if (greenNumbers.includes(number)) return "green";
+            return redNumbers.includes(number) ? "red" : "black";
+        }
+
+        function spinRoulette() {
+            const betNumber = parseInt(document.getElementById('bet-number').value);
+            const selectedColor = document.querySelector('input[name="bet-color"]:checked');
+
+            if (isNaN(betNumber) && !selectedColor) {
+                messageElement.innerText = "Por favor, insira um número entre 0 e 36 ou escolha uma cor.";
+                return;
+            }
+
+            if (balance < 10) {
+                messageElement.innerText = "Saldo insuficiente para jogar.";
+                return;
+            }
+
+            balance -= 10;
+            balanceElement.innerText = `Saldo: R$ ${balance}`;
+
+            const winningNumber = Math.floor(Math.random() * 37);
+            const winningColor = getColor(winningNumber);
+            const degrees = (winningNumber / 37) * 360 + 3600;
+            rouletteWheel.style.transform = `rotate(-${degrees}deg)`;
+
+            setTimeout(() => {
+                let winAmount = 0;
+
+                if (selectedColor && selectedColor.value === winningColor) {
+                    winAmount = 20;
+                    messageElement.innerHTML = `Você apostou na cor <span style="color:${winningColor}">${selectedColor.value}</span> e ganhou! Número sorteado: <span style="color:${winningColor}">${winningNumber}</span>. Ganho: R$ ${winAmount}!`;
+                } else if (!isNaN(betNumber) && betNumber === winningNumber) {
+                    winAmount = 360;
+                    messageElement.innerHTML = `Você apostou no número ${betNumber} e ganhou! Número sorteado: <span style="color:${winningColor}">${winningNumber}</span>. Ganho: R$ ${winAmount}!`;
+                } else {
+                    messageElement.innerHTML = `Você perdeu! Número sorteado: <span style="color:${winningColor}">${winningNumber}</span>. Tente novamente!`;
+                }
+
+                balance += winAmount;
+                balanceElement.innerText = `Saldo: R$ ${balance}`;
+            }, 3000);
+        }
+
+        document.getElementById('spin-button').addEventListener('click', spinRoulette);
+        createRouletteNumbers();
+    </script>
+     <script src="script.js"></script>
+</body>
+</html>

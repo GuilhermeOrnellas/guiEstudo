@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #2E7D32;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+        background-color: #1B5E20;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    #game-area {
+        margin: 20px 0;
+    }
+
+    #controls button {
+        margin: 5px;
+        padding: 10px 20px;
+        background-color: #388E3C;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #controls button:disabled {
+        background-color: #A5D6A7;
+        cursor: not-allowed;
+    }
+
+    #controls button:hover:enabled {
+        background-color: #4CAF50;
+    }
+</style>
+</head>
+<body>
+
+    <div class="header" id="header">
+        <button onclick="sidebarbotao()" class="btn_icon_header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </button>
+        <div class="logo_header">
+          <img src="TROPABET.io (1).svg" alt="Foto da Logo">
+        </div>
+        <div class="navigation" id="navigation">
+          <button onclick="sidebarbotao()" class="btn_icon_header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </button>
+          <a href="index.html">Home</a>
+          <a href="sobrenos.html">Sobre Nós</a>
+        </div>
+        <div class="login-registrar">
+          <a href="login.html" class="login">Login</a>
+          <a href="registrar.html" class="registrar">Registrar</a>
+        </div>
+      </div>
+      <div tabindex="0" onclick="closeSidebar()" class="content" id="content"></div>
+
+
+    <div class="container">
+        <h1>Blackjack</h1>
+        <p id="balance">Saldo: R$ 100</p>
+        <div id="game-area">
+            <p id="dealer-hand">Mão do dealer: </p>
+            <p id="player-hand">Sua Mão: </p>
+            <p id="message"></p>
+        </div>
+        <div id="controls">
+            <button id="deal-button">Apostar</button>
+            <button id="hit-button" disabled>Comprar</button>
+            <button id="stand-button" disabled>Manter</button>
+        </div>
+    </div>
+    <script >const dealerHandElement = document.getElementById('dealer-hand');
+    const playerHandElement = document.getElementById('player-hand');
+    const messageElement = document.getElementById('message');
+    const balanceElement = document.getElementById('balance');
+    const hitButton = document.getElementById('hit-button');
+    const standButton = document.getElementById('stand-button');
+    const dealButton = document.getElementById('deal-button');
+
+    let dealerHand = [];
+    let playerHand = [];
+    let deck = [];
+    let balance = 100;
+    let playerTurn = true;
+
+    function createDeck() {
+        const suits = ['♠', '♥', '♦', '♣'];
+        const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+        let newDeck = [];
+
+        for (let suit of suits) {
+            for (let value of values) {
+                newDeck.push({ suit, value });
+            }
+        }
+        return shuffle(newDeck);
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function getCardValue(card) {
+        if (card.value === 'A') return 11;
+        if (['K', 'Q', 'J'].includes(card.value)) return 10;
+        return parseInt(card.value);
+    }
+
+    function calculateHandValue(hand) {
+        let value = 0;
+        let aces = 0;
+
+        for (let card of hand) {
+            value += getCardValue(card);
+            if (card.value === 'A') aces++;
+        }
+
+        while (value > 21 && aces > 0) {
+            value -= 10;
+            aces--;
+        }
+
+        return value;
+    }
+
+    function dealInitialCards() {
+        deck = createDeck();
+        dealerHand = [deck.pop(), deck.pop()];
+        playerHand = [deck.pop(), deck.pop()];
+
+        renderHands();
+        checkPlayerBust();
+        hitButton.disabled = false;
+        standButton.disabled = false;
+        dealButton.disabled = true;
+    }
+
+    function renderHands() {
+        dealerHandElement.innerHTML = `Dealer's Hand: ${dealerHand[0].value}${dealerHand[0].suit} ??`;
+        playerHandElement.innerHTML = `Player's Hand: ` + playerHand.map(card => `${card.value}${card.suit}`).join(' ');
+    }
+
+    function hit() {
+        if (!playerTurn) return;
+
+        playerHand.push(deck.pop());
+        renderHands();
+        checkPlayerBust();
+    }
+
+    function checkPlayerBust() {
+        const playerValue = calculateHandValue(playerHand);
+        if (playerValue > 21) {
+            playerTurn = false;
+            messageElement.innerText = `Você estourou com ${playerValue}! Você perdeu.`;
+            balance -= 10;
+            updateBalance();
+            endRound();
+        }
+    }
+
+    function stand() {
+        if (!playerTurn) return;
+
+        playerTurn = false;
+        dealerTurn();
+    }
+
+    function dealerTurn() {
+        while (calculateHandValue(dealerHand) < 17) {
+            dealerHand.push(deck.pop());
+        }
+
+        endRound();
+    }
+
+    function endRound() {
+        renderFinalHands();
+        const playerValue = calculateHandValue(playerHand);
+        const dealerValue = calculateHandValue(dealerHand);
+
+        if (playerValue <= 21 && (dealerValue > 21 || playerValue > dealerValue)) {
+            messageElement.innerText = `Você ganhou! Com ${playerValue} pontos.`;
+            balance += 20;
+        } else if (playerValue === dealerValue) {
+            messageElement.innerText = "Empate!";
+        } else if (playerValue <= 21 && dealerValue <= 21 && playerValue < dealerValue) {
+            messageElement.innerText = `O dealer ganhou com ${dealerValue} pontos. Você perdeu!`;
+            balance -= 10;
+        }
+        updateBalance();
+        resetControls();
+    }
+
+    function renderFinalHands() {
+        dealerHandElement.innerHTML = `Dealer's Hand: ` + dealerHand.map(card => `${card.value}${card.suit}`).join(' ');
+        playerHandElement.innerHTML = `Player's Hand: ` + playerHand.map(card => `${card.value}${card.suit}`).join(' ');
+    }
+
+    function updateBalance() {
+        balanceElement.innerText = `Saldo: R$ ${balance}`;
+    }
+
+    function resetControls() {
+        hitButton.disabled = true;
+        standButton.disabled = true;
+        dealButton.disabled = false;
+    }
+
+    dealButton.addEventListener('click', dealInitialCards);
+    hitButton.addEventListener('click', hit);
+    standButton.addEventListener('click', stand);
+
+    updateBalance();
+</script>
+<script src="script.js"></script>
+</body>
+</html>
