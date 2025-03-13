@@ -58,7 +58,7 @@ pessoas.append(nome2)
 pessoas.append(nome3)
 print(pesssoas)
 
-'''
+
 #-------------------------------------------------------------
 
 num = list()
@@ -104,4 +104,103 @@ print(f'O ultimo elemento a ser apagado {r1}')
  
 r1.pop(2) # forcei a apagar o elemeto na posição 2
 print(f'O ultimo elemento a ser apagado {r1}')
+
+#del()--- deleta ----------------------------------
+
+del(r1[1:3])
+print(r1)
+
+#sort() - ordena em ordem crescente os elementos --
+
+z = [100,200,300, 2, 78]
+z.sort()
+print(z)
+
+#ordenar em orden decrescente ---------------------
+
+z.sort(reverse=true)
+print(z)
+
+
+
+#enumerate() ----------------------------------
+
+lista =[10,20,30,40]
+for i,v in enumerate(lista):
+    print(f'Indice {i} valor = {v}')
+
+#dicionário()-- nome_dic ={'chave':'valor'}-----
+
+d={}  #ou #dict()
+print(d)
+print(type(d))
+
+l=[]
+print(type(l))
+
+t=()
+print(type(t))
+
+#-----------------------------------------------
+if not d:
+    print('O dicionario não está vazio')
+else:
+    print('O dicionario está vazio')
+
+#-----------------------------------------------
+aluno ={
+    'nome':'Tereza'
+    'idade':28,
+    'sexo':'F'
+}
+
+print('Nome: ', aluno['nome'])
+print('idade: ', aluno['idade'])
+print('sexo: ', aluno['sexo'])
+
+aluno['idade'] = 89
+
+aluno['e-mail'] = josefino@gmail.com
+
+del aluno['sexo']
+
+print(aluno)
+
+'''
+#keys() - mostra somente a chave 
+#values() - mostra somente os valores
+#itens() - mostra os itens
+
+#------------------------------------------
+
+notas = {}
+
+notas = {
+    'G1':float(input('Digite a nota 1: '))
+    'G2':float(input('Digite a nota 2: '))
+    'G3':float(input('Digite a nota 3: '))
+}
+
+for valor in notas.values():
+    print(valor)
+
+#update()-- atualizar o dicionário ----------
+
+d2 = {'nome': 'Thereza'}
+d2.update({'nome':'Thereza Gondim'}) #atualizar o nome
+print(d2)
+
+d2.update({'idade':12})
+print(d2)
+
+#copy()- copia do dicionário ----------------------
+
+original = {'a':1,'b':2,'c':3}
+copia=original.copy()
+
+copia['e'] = 8
+
+print(copia)
+print(original)
+
 
