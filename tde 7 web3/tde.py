@@ -2,12 +2,12 @@ import mysql.connector
 from tkinter import *
 from tkinter import messagebox
 
-def conectar(): conexao = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="livraria",
-    )
+conexao = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="livraria",
+)
 
 cursor = conexao.cursor()
 cursor.execute("CREATE DATABASE IF NOT EXISTS livraria")
@@ -57,33 +57,30 @@ cursor.close()
 conexao.close()
 
 def inserir_cliente(nome, telefone, endereco, documento, tipo):
-    conn = conectar()
-    cursor = conn.cursor()
+    cursor = conexao.cursor()
     sql = "INSERT INTO Cliente (nome, telefone, endereco, documento, tipo) VALUES (%s, %s, %s, %s, %s)"
     valores = (nome, telefone, endereco, documento, tipo)
     cursor.execute(sql, valores)
-    conn.commit()
+    conexao.commit()
     cursor.close()
-    conn.close()
+    conexao.close()
 
 def atualizar_cliente(codigo, novo_nome):
-    conn = conectar()
-    cursor = conn.cursor()
+    cursor = conexao.cursor()
     cursor.execute("UPDATE Cliente SET nome = %s WHERE codigo = %s", (novo_nome, codigo))
-    conn.commit()
+    conexao.commit()
     cursor.close()
-    conn.close()
+    conexao.close()
 
 
 def listar_clientes():
-    conn = conectar()
-    cursor = conn.cursor()
+    cursor = conexao.cursor()
     cursor.execute("SELECT * FROM Cliente")
     resultado = cursor.fetchall()
     for linha in resultado:
         print(linha)
     cursor.close()
-    conn.close()
+    conexao.close()
 
 
 def interface():
@@ -123,5 +120,4 @@ def interface():
     janela.mainloop()
 
 
-criar_banco_e_tabelas()
 interface()
