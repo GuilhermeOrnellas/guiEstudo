@@ -53,34 +53,24 @@ cursor.execute("""
     )
     """)
 conexao.commit()
-cursor.close()
-conexao.close()
+
 
 def inserir_cliente(nome, telefone, endereco, documento, tipo):
-    cursor = conexao.cursor()
     sql = "INSERT INTO Cliente (nome, telefone, endereco, documento, tipo) VALUES (%s, %s, %s, %s, %s)"
     valores = (nome, telefone, endereco, documento, tipo)
     cursor.execute(sql, valores)
     conexao.commit()
-    cursor.close()
-    conexao.close()
 
 def atualizar_cliente(codigo, novo_nome):
-    cursor = conexao.cursor()
     cursor.execute("UPDATE Cliente SET nome = %s WHERE codigo = %s", (novo_nome, codigo))
     conexao.commit()
-    cursor.close()
-    conexao.close()
 
 
 def listar_clientes():
-    cursor = conexao.cursor()
     cursor.execute("SELECT * FROM Cliente")
     resultado = cursor.fetchall()
     for linha in resultado:
         print(linha)
-    cursor.close()
-    conexao.close()
 
 
 def interface():
@@ -121,3 +111,6 @@ def interface():
 
 
 interface()
+
+cursor.close()
+conexao.close()
